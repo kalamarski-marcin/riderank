@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    = render 'shared/head'
+  body
+    div.ui.container
+      = link_to :root, class: 'logo'
+        span
+          i.icon.taxi
+        span RideRank
+      = render 'shared/flash'
+      == yield
+  = javascript_include_tag 'application'
