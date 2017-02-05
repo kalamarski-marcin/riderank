@@ -60,7 +60,7 @@ module TaxiRides
     end
 
     def create_taxi_ride
-      TaxiRides::TaxiRideRepository.create(
+      TaxiRides::TaxiRideRepository.save(
         taxi_ride: @taxi_ride,
         route: @route,
         taxi_provider: @taxi_provider,

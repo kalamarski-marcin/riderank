@@ -1,7 +1,7 @@
 module TaxiRides
   # :nodoc:
   module TaxiRideRepository
-    def self.create(taxi_ride:, route:, price:, taxi_provider:)
+    def self.save(taxi_ride:, route:, price:, taxi_provider:)
       taxi_ride.taxi_provider = taxi_provider
       taxi_ride.route = route
       taxi_ride.price = price.to_f
