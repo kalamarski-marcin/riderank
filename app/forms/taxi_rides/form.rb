@@ -1,37 +1,19 @@
 module TaxiRides
   # :nodoc:
-  class Form
-    attr_reader :errors, :taxi_ride, :params
-
-    def initialize(taxi_ride, params)
-      @taxi_ride = taxi_ride
-      @params = params
-      @errors = {}
-    end
-
-    def validate
-      schema
-      result = @schema.call(@params)
-      @errors = result.errors
-      result.success?
-    end
+  class Form < BaseForm
 
     def save(create_taxi_ride_service)
-      result = create_taxi_ride_service.execute
-      sth_went_wrong unless result
-      result
+      create_taxi_ride_service.execute
     rescue TaxiRides::CreateTaxiRideServiceError => e
-      @errors = { critical: e.message }
+      critical_error do
+        @logger.error e
+      end
       false
-    rescue
-      sth_went_wrong
+    rescue StandardError => e
+      critical_error do
+        @logger.error e
+      end
       false
-    end
-
-    private
-
-    def sth_went_wrong
-      @errors = { critical: 'Something went wrong. Please contact us'}
     end
 
     def schema

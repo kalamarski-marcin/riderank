@@ -101,7 +101,7 @@ GEM
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
-    faker (1.7.2)
+    faker (1.7.3)
       i18n (~> 0.5)
     ffi (1.9.17)
     formatador (0.2.5)
@@ -289,9 +289,6 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.1)
   rails-controller-testing
-  rspec (~> 3.5)
-  rspec-expectations (~> 3.5)
-  rspec-mocks (~> 3.5)
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   semantic-ui-sass!

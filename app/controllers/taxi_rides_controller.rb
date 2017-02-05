@@ -23,7 +23,7 @@ class TaxiRidesController < ApplicationController
 
   def create_taxi_ride_service
     TaxiRides::CreateTaxiRideService.new(
-      @form.taxi_ride,
+      @form.model,
       TaxiRides::GoogleMapsDistanceMatrixService.new( # or TaxiRides::RandomDistanceService
         @form.params[:start_address],
         @form.params[:destination_address]

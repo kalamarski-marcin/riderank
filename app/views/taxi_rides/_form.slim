@@ -1,50 +1,50 @@
-- if @form.errors.key?(:critical)
+- if @form.critical_error?
     div.ui.negative.message
       div.header Error
       p
-        = @form.errors[:critical]
+        = @form.critical_error
 = form_tag taxi_rides_path, method: :post, class: "ui form"
   div.field
     div.two.fields
-      div.field class=(@form.errors.has_key?(:start_address)?'error':'')
+      div.field class=(@form.start_address_error? ? 'error' : '')
         div.ui.left.icon.input
           = text_field_tag \
             'taxi_ride[start_address]',
-            params[:taxi_ride].present? ? params[:taxi_ride][:start_address] : '',
+            @form.start_address,
             placeholder: 'From...'
           i.arrow.location.arrow.icon
-        - if @form.errors.has_key?(:start_address)
+        - if @form.start_address_error?
           div.ui.pointing.up.red.basic.label
-            = @form.errors[:start_address]
-      div.field class=(@form.errors.has_key?(:destination_address)?'error':'')
+            = @form.start_address_error
+      div.field class=(@form.destination_address_error? ? 'error': '' )
         div.ui.left.icon.input
           = text_field_tag \
             'taxi_ride[destination_address]',
-            params[:taxi_ride].present? ? params[:taxi_ride][:destination_address] : '',
+            @form.destination_address,
             placeholder: 'To...'
           i.arrow.location.arrow.icon
-        - if @form.errors.has_key?(:destination_address)
+        - if @form.destination_address_error?
           div.ui.pointing.up.red.basic.label
-            = @form.errors[:destination_address]
+            = @form.destination_address_error
   div.field
     div.two.fields
-      div.field class=(@form.errors.has_key?(:taxi_provider)?'error':'')
+      div.field class=(@form.taxi_provider_id_error? ? 'error': '')
         div.ui.labeled.input
           div.ui.label
             i.taxi.icon
           = select_tag \
             'taxi_ride[taxi_provider_id]',
-            options_for_select([*@taxi_providers], params[:taxi_ride].present? ? params[:taxi_ride][:taxi_provider_id] : nil),
+            options_for_select([*@taxi_providers], @form.taxi_provider_id),
             class: 'ui dropdown fluid'
-      div.field class=(@form.errors.has_key?(:price)?'error':'')
+      div.field class=(@form.price_error? ? 'error': '')
         div.ui.left.icon.input
           = text_field_tag \
             'taxi_ride[price]',
-            params[:taxi_ride].present? ? params[:taxi_ride][:price] : '',
+            @form.price,
             placeholder: 'Price...'
           i.arrow.euro.icon
-        - if @form.errors.has_key?(:price)
+        - if @form.price_error?
           div.ui.pointing.up.red.basic.label
-            = @form.errors[:price]
+            = @form.price_error
   div.field
     = submit_tag 'Save', class: 'ui button twitter large fluid'

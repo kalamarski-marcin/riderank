@@ -25,7 +25,7 @@ module TaxiRides
     private
 
     def taxi_provider
-      @taxi_provider = TaxiProvider.find(@params[:taxi_provider_id])
+      @taxi_provider = TaxiProvider.find(@params[:taxi_provider_id].to_i)
     end
 
     def create_start_address
@@ -64,7 +64,7 @@ module TaxiRides
         taxi_ride: @taxi_ride,
         route: @route,
         taxi_provider: @taxi_provider,
-        price: @params[:price].to_f
+        price: @params[:price]
       )
     end
   end

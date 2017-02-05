@@ -4,7 +4,7 @@ module TaxiRides
     def self.create(taxi_ride:, route:, price:, taxi_provider:)
       taxi_ride.taxi_provider = taxi_provider
       taxi_ride.route = route
-      taxi_ride.price = price
+      taxi_ride.price = price.to_f
       taxi_ride.date = DateTime.now
       taxi_ride.save
     end

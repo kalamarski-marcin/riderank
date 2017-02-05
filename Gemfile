@@ -21,25 +21,25 @@ group :development, :test do
   gem 'awesome_print'
   gem 'better_errors'
   gem 'byebug', platform: :mri
-  gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_girl'
   gem 'factory_girl_rails'
-  gem 'faker'
   gem 'rails-controller-testing'
-  gem 'rspec', '~> 3.5'
-  gem 'rspec-expectations', '~> 3.5'
-  gem 'rspec-mocks', '~> 3.5'
   gem 'rspec-rails', '~> 3.5'
+  gem 'guard-rspec', require: false
 end
 
 group :development do
-  gem 'guard-rspec', require: false
   gem 'listen', '~> 3.0.5'
   gem 'pry-rails'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
