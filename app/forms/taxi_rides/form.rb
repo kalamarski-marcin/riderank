@@ -5,12 +5,12 @@ module TaxiRides
     def save(create_taxi_ride_service)
       create_taxi_ride_service.execute
     rescue TaxiRides::CreateTaxiRideServiceError => e
-      critical_error do
+      sth_went_wrong do
         @logger.error e
       end
       false
     rescue StandardError => e
-      critical_error do
+      sth_went_wrong do
         @logger.error e
       end
       false
