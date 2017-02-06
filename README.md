@@ -1,24 +1,20 @@
-# README
+# Welcome to RideRank
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+App tracks taxi rides and presents simple statistics.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+* Ruby on Rails 5
+* PostgreSQL
 
-* System dependencies
+## Install
 
-* Configuration
+* clone repository
+* bundle install
+* rake db:create
+* rake db:migrate
+* rake db:seed
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Run tests
+* bundle exec rspec
+* bundle exec guard
