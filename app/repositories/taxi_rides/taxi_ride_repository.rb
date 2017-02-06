@@ -1,6 +1,12 @@
 module TaxiRides
   # :nodoc:
   module TaxiRideRepository
+
+    SELECT_STATS = [
+      "DISTINCT CONCAT_WS(' ',SUM(routes.distance),'km') AS sum_distance",
+      "CONCAT_WS(' ',SUM(taxi_rides.price), taxi_rides.currency) AS sum_price"
+    ]
+
     def self.save(taxi_ride:, route:, price:, taxi_provider:)
       taxi_ride.taxi_provider = taxi_provider
       taxi_ride.route = route
@@ -12,10 +18,7 @@ module TaxiRides
     def self.daily_stats
       ::TaxiRide
         .readonly
-        .select([
-                  "DISTINCT CONCAT_WS(' ',SUM(routes.distance),'km') AS sum_distance",
-                  "CONCAT_WS(' ',SUM(taxi_rides.price), taxi_rides.currency) AS sum_price"
-                ])
+        .select(SELECT_STATS)
         .joins([:route])
         .where(
           "taxi_rides.currency='EUR' AND
@@ -30,10 +33,7 @@ module TaxiRides
     def self.weekly_stats
       ::TaxiRide
         .readonly
-        .select([
-                  "DISTINCT CONCAT_WS(' ',SUM(routes.distance),'km') AS sum_distance",
-                  "CONCAT_WS(' ',SUM(taxi_rides.price), taxi_rides.currency) AS sum_price"
-                ])
+        .select(SELECT_STATS)
         .joins([:route])
         .where(
                "taxi_rides.currency='EUR' AND
