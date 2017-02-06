@@ -33,14 +33,14 @@ class BaseForm
       key = method.slice(0..-7).to_sym
       return @errors[key] if @errors.key? key
     else
-      return @params[method] if @params.key? method
+      key = method.to_sym
+      return @params[key] if @params.key? key
+      ''
     end
-    ''
+    raise ArgumentError
   end
 
-  protected
-
-  def critical_error(&block)
+  def sth_went_wrong(&block)
     @errors = { critical: 'Something went wrong. Please contact us.' }
     block.call if block_given?
   end
