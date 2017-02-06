@@ -9,7 +9,40 @@ module TaxiRides
       taxi_ride.save
     end
 
-    def self.weekly_report
+    def self.daily_stats
+      ::TaxiRide
+        .readonly
+        .select([
+                  "DISTINCT CONCAT_WS(' ',SUM(routes.distance),'km') AS sum_distance",
+                  "CONCAT_WS(' ',SUM(taxi_rides.price), taxi_rides.currency) AS sum_price"
+                ])
+        .joins([:route])
+        .where(
+          "taxi_rides.currency='EUR' AND
+               extract(day from now()) = extract(day from taxi_rides.date) AND
+               extract(year from now()) = extract(year from taxi_rides.date)
+               ")
+        .group('taxi_rides.currency')
+        .order("sum_distance ASC")
+        .first
+    end
+
+    def self.weekly_stats
+      ::TaxiRide
+        .readonly
+        .select([
+                  "DISTINCT CONCAT_WS(' ',SUM(routes.distance),'km') AS sum_distance",
+                  "CONCAT_WS(' ',SUM(taxi_rides.price), taxi_rides.currency) AS sum_price"
+                ])
+        .joins([:route])
+        .where(
+               "taxi_rides.currency='EUR' AND
+               extract(week from now()) = extract(week from taxi_rides.date) AND
+               extract(year from now()) = extract(year from taxi_rides.date)
+               ")
+        .group('taxi_rides.currency')
+        .order("sum_distance ASC")
+        .first
     end
 
     def self.monthly_report
@@ -23,11 +56,11 @@ module TaxiRides
                   "string_agg(distinct taxi_providers.name,', ') as taxi"
                 ])
         .joins([:route, :taxi_provider])
-        .where([
-                 "taxi_rides.currency='EUR'",
-                 'extract(month from now()) = extract(month from taxi_rides.date)',
-                 'extract(year from now()) = extract(year from taxi_rides.date)'
-               ])
+        .where("
+                 taxi_rides.currency='EUR' AND
+                 extract(month from now()) = extract(month from taxi_rides.date) AND
+                 extract(year from now()) = extract(year from taxi_rides.date)
+               ")
         .group('day, taxi_rides.currency')
         .order('day ASC')
     end

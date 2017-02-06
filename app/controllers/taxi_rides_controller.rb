@@ -37,5 +37,7 @@ class TaxiRidesController < ApplicationController
     @form = TaxiRides::Form.new(TaxiRide.new, form_params)
     @taxi_providers = TaxiRides::TaxiProviderRepository.names_and_ids
     @monthly_report = TaxiRides::TaxiRideRepository.monthly_report
+    @weekly_stats = TaxiRides::TaxiRideRepository.weekly_stats
+    @daily_stats = TaxiRides::TaxiRideRepository.daily_stats
   end
 end

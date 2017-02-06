@@ -1,25 +1,19 @@
-h4.ui.horizontal.divider.header
-  i.bar.chart.icon
-- if @monthly_report.present?
-  table.ui.celled.striped.table
-    thead
-      tr
-        th colspan=5 Montlhy statistics
-      tr
-        th.collapsing Day
-        th.collapsing Rides sum
-        th.collapsing Avg. ride
-        th.collapsing Avg. price
-        th.collapsing Taxis
-    tbody
-      - @monthly_report.each do |row|
-       tr
-        td
-          strong #{row.day}
-        td #{row.distance}
-        td #{row.avg_distance}
-        td #{row.avg_price}
-        td #{row.taxi}
-- else
-  div.ui.message.info
-    div.header There is nothing to show.
+table.ui.celled.striped.table
+  thead
+    tr
+      th colspan=5 Montlhy statistics
+    tr
+      th.collapsing Day
+      th.collapsing Rides sum
+      th.collapsing Avg. ride
+      th.collapsing Avg. price
+      th.collapsing Taxis
+  tbody
+  - @monthly_report.each do |row|
+     tr
+      td
+        strong #{row.day}
+      td #{row.distance}
+      td #{row.avg_distance}
+      td #{row.avg_price}
+      td #{row.taxi}

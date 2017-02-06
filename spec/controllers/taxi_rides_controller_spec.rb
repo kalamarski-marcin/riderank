@@ -15,12 +15,13 @@ RSpec.describe TaxiRidesController, type: :controller do
       expect(assigns(:taxi_providers)).to eq(expected_taxi_providers)
     end
 
-    it 'populates an array of taxi statistics' do
+    it 'populates an array of taxi montlhy statistics' do
       create(:taxi_ride)
       expected_monthly_report = TaxiRides::TaxiRideRepository.monthly_report
       get :index
       expect(assigns(:monthly_report)).to eq(expected_monthly_report)
     end
+
   end
 
   describe 'POST #taxi_rides' do
@@ -46,7 +47,7 @@ RSpec.describe TaxiRidesController, type: :controller do
 
       it 'does not clear params' do
         post :create, params: @params
-        expect(request.params[:taxi_ride][:price]).to eq("5") 
+        expect(request.params[:taxi_ride][:price]).to eq("5")
       end
     end
 
