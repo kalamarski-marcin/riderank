@@ -3,6 +3,24 @@ require 'rails_helper'
 RSpec.describe TaxiRides::TaxiRideRepository do
   describe 'queries' do
 
+    context '.save' do
+      it 'returns true' do
+        route = create(:route)
+        taxi_provider = create(:taxi_provider)
+        price = 100
+        taxi_ride = TaxiRide.new
+
+        expect(
+          TaxiRides::TaxiRideRepository.save(
+            taxi_ride: taxi_ride,
+            route: route,
+            taxi_provider: taxi_provider,
+            price: price
+          )
+        ).to be_truthy
+      end
+    end
+
     context '.monthly_report' do
 
       before :each do
