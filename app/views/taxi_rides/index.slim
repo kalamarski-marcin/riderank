@@ -1,12 +1,12 @@
 div.container.fluid.app
   = render 'form'
-- if @monthly_report.present? || @weekly_stats.present?
-  h4.ui.horizontal.divider.header
-    i.bar.chart.icon
-- if @weekly_stats.present?
-  div.ui.four.statistics.tiny
-    = render 'weekly_stats'
-    - if @daily_stats.present?
-      = render 'daily_stats'
-- if @monthly_report.present?
-  = render 'monthly_report'
+  - if @monthly_report.present? || @weekly_stats.present?
+    h4.ui.horizontal.divider.header
+      i.bar.chart.icon
+  - if @weekly_stats.present?
+    div.ui.four.statistics.tiny
+      = render 'weekly_stats'
+      - if @daily_stats.present?
+        = render 'daily_stats'
+  - if @monthly_report.present?
+    = render 'monthly_report'

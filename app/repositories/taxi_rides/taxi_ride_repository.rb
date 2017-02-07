@@ -53,7 +53,7 @@ module TaxiRides
                   "CONCAT_WS(' ',ROUND(AVG(routes.distance)::numeric,2),'km') AS avg_distance",
                   "CONCAT_WS(' ', ROUND(AVG(taxi_rides.price)::numeric,2), taxi_rides.currency) AS avg_price",
                   "to_char(taxi_rides.date, 'fmMonth, fmDDth') AS day",
-                  "string_agg(distinct taxi_providers.name,', ') as taxi"
+                  "string_agg(distinct taxi_providers.name,', ') as taxis"
                 ])
         .joins([:route, :taxi_provider])
         .where("
