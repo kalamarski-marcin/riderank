@@ -24,8 +24,8 @@ module TaxiRides
               en:
                 {
                   errors: {
-                    address_format?: 'must have valid format: street, city, country',
-                    equal_addresses: 'must be different'
+                    address_format?: 'type in following format: street, city, country',
+                    equal_addresses: 'addresses must be different'
                   }
                 }
             )

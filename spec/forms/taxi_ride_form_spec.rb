@@ -78,13 +78,13 @@ RSpec.describe TaxiRides::Form do
         it 'start_address must have valid format' do
           form = TaxiRides::Form.new(@taxi_ride, { start_address: '1,2' })
           form.validate
-          expect(form.errors[:start_address]).to eq(["must have valid format: street, city, country"])
+          expect(form.errors[:start_address]).to eq(["type in following format: street, city, country"])
         end
 
         it 'destination_address must have valid format' do
           form = TaxiRides::Form.new(@taxi_ride, { destination_address: '1,2' })
           form.validate
-          expect(form.errors[:destination_address]).to eq(["must have valid format: street, city, country"])
+          expect(form.errors[:destination_address]).to eq(["type in following format: street, city, country"])
         end
 
         it 'taxi_provider_id must be number' do
@@ -108,7 +108,7 @@ RSpec.describe TaxiRides::Form do
         it 'start_address has to different than destination_address' do
           form = TaxiRides::Form.new(@taxi_ride, { start_address: "1,2,3", destination_address: "1,2,3" })
           form.validate
-          expect(form.errors[:equal_addresses]).to eq(["must be different"])
+          expect(form.errors[:equal_addresses]).to eq(["addresses must be different"])
         end
       end
     end

@@ -1,8 +1,12 @@
 - if @form.critical_error?
-    div.ui.negative.message
-      div.header Error
-      p
-        = @form.critical_error
+  div.ui.negative.message
+    div.header Error
+    p
+      = @form.critical_error
+- if @form.equal_addresses_error?
+  div.ui.negative.message
+    p
+      = @form.equal_addresses_error
 = form_tag taxi_rides_path, method: :post, class: "ui form"
   div.field
     div.two.fields
