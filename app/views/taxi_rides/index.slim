@@ -1,12 +1,13 @@
 div.container.fluid.app
   = render 'form'
-  - if @monthly_report.present? || @weekly_stats.present?
+  - if @taxi_rides_stats_presenter.stats?
     h4.ui.horizontal.divider.header
       i.bar.chart.icon
-  - if @weekly_stats.present?
-    div.ui.four.statistics.tiny
-      = render 'weekly_stats'
-      - if @daily_stats.present?
-        = render 'daily_stats'
-  - if @monthly_report.present?
-    = render 'monthly_report'
+    - if @taxi_rides_stats_presenter.weekly_stats?
+      div.ui.four.statistics.tiny
+        = render 'weekly_stats', weekly_stats: @taxi_rides_stats_presenter.weekly_stats
+        - if @taxi_rides_stats_presenter.daily_stats?
+          = render 'daily_stats', daily_stats: @taxi_rides_stats_presenter.daily_stats
+    = render 'taxi_providers_stats', taxi_providers_stats: @taxi_rides_stats_presenter.taxi_providers_stats
+    - if @taxi_rides_stats_presenter.monthly_report?
+      = render 'monthly_report', monthly_report: @taxi_rides_stats_presenter.monthly_report

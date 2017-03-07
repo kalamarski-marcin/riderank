@@ -7,6 +7,7 @@ RSpec.describe TaxiRides::TaxiRideRepository do
       it 'returns true' do
         route = create(:route)
         taxi_provider = create(:taxi_provider)
+        user = create(:user)
         price = 100
         taxi_ride = TaxiRide.new
 
@@ -15,7 +16,8 @@ RSpec.describe TaxiRides::TaxiRideRepository do
             taxi_ride: taxi_ride,
             route: route,
             taxi_provider: taxi_provider,
-            price: price
+            price: price,
+            user: user
           )
         ).to be_truthy
       end

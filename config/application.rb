@@ -28,6 +28,7 @@ module Riderank
       #{config.root}/forms
       #{config.root}/value_objects
       #{config.root}/repositories
+      #{config.root}/presenters
     )
   end
 end

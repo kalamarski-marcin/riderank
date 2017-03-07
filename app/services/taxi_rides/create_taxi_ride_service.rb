@@ -61,6 +61,7 @@ module TaxiRides
 
     def create_taxi_ride
       TaxiRides::TaxiRideRepository.save(
+        user: User.first, # hard coded
         taxi_ride: @taxi_ride,
         route: @route,
         taxi_provider: @taxi_provider,

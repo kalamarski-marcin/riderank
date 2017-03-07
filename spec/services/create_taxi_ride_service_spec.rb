@@ -4,6 +4,7 @@ RSpec.describe TaxiRides::CreateTaxiRideService do
   describe 'execute' do
     context 'when returns true' do
       it 'saves taxi ride' do
+        create(:user)
         taxi_ride = TaxiRide.new
         taxi_provider = create(:taxi_provider)
         distance_matrix_service = double()

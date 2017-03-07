@@ -1,0 +1,14 @@
+table.ui.celled.striped.table
+  thead
+    tr
+      th colspan=5 Taxi Providers stats
+    tr
+      th.collapsing Name
+      th.collapsing Amount
+      th.collapsing %
+  tbody
+  - taxi_providers_stats.each do |row|
+     tr
+      td #{row.name}
+      td #{row.amount}
+      td #{row.percent}

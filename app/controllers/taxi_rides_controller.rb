@@ -36,8 +36,6 @@ class TaxiRidesController < ApplicationController
     form_params = params[:taxi_ride].present? ? params[:taxi_ride] : {}
     @form = TaxiRides::Form.new(TaxiRide.new, form_params)
     @taxi_providers = TaxiRides::TaxiProviderRepository.names_and_ids
-    @monthly_report = TaxiRides::TaxiRideRepository.monthly_report
-    @weekly_stats = TaxiRides::TaxiRideRepository.weekly_stats
-    @daily_stats = TaxiRides::TaxiRideRepository.daily_stats
+    @taxi_rides_stats_presenter = TaxiRides::TaxiRidesStatsPresenter.new(1) # hard coded id injection
   end
 end

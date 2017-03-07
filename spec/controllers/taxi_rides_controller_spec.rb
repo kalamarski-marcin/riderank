@@ -15,11 +15,10 @@ RSpec.describe TaxiRidesController, type: :controller do
       expect(assigns(:taxi_providers)).to eq(expected_taxi_providers)
     end
 
-    it 'populates an array of taxi montlhy statistics' do
+    it 'populates an presenter object' do
       create(:taxi_ride)
-      expected_monthly_report = TaxiRides::TaxiRideRepository.monthly_report
       get :index
-      expect(assigns(:monthly_report)).to eq(expected_monthly_report)
+      expect(assigns(:taxi_rides_stats_presenter)).to be_instance_of(TaxiRides::TaxiRidesStatsPresenter)
     end
 
   end
@@ -53,6 +52,7 @@ RSpec.describe TaxiRidesController, type: :controller do
 
     before :each do
       @taxi_provider = create(:taxi_provider)
+      create(:user)
     end
 
     context 'with valid attributes' do

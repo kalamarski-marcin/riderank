@@ -5,5 +5,6 @@ FactoryGirl.define do
     date DateTime.now
     price 100
     currency 'EUR'
+    user
   end
 end

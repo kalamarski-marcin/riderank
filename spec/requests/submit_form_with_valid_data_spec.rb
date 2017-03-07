@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'submit form with valid data' do
   before :each do
     create(:taxi_provider)
+    create(:user)
     visit '/'
   end
 
