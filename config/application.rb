@@ -23,7 +23,7 @@ module Riderank
     # -- all .rb files in that directory are automatically loaded.
     config.time_zone = 'Europe/Warsaw'
     config.active_record.default_timezone = :local
-
+    config.assets.paths << Rails.root.join('vendor','assets','bower_components')
     config.autoload_paths += %w(
       #{config.root}/forms
       #{config.root}/value_objects

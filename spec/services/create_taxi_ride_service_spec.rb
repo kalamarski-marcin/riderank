@@ -12,7 +12,8 @@ RSpec.describe TaxiRides::CreateTaxiRideService do
           start_address: '1,2,3',
           destination_address: '4,5,6',
           taxi_provider_id: taxi_provider.id,
-          price: 100
+          price: 100,
+          date: '1.1.2017'
         }
         create_taxi_ride_service = TaxiRides::CreateTaxiRideService.new(taxi_ride, distance_matrix_service, params)
         allow(distance_matrix_service).to receive(:execute) { 10 }

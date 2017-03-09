@@ -59,13 +59,18 @@ module TaxiRides
       @distance = @distance_matrix_service.execute
     end
 
+    def date
+      DateTime.strptime(@params[:date], I18n.t('date.formats.default'))
+    end
+
     def create_taxi_ride
       TaxiRides::TaxiRideRepository.save(
         user: User.first, # hard coded
         taxi_ride: @taxi_ride,
         route: @route,
         taxi_provider: @taxi_provider,
-        price: @params[:price]
+        price: @params[:price],
+        date: date
       )
     end
   end

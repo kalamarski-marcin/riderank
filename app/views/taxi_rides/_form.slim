@@ -8,6 +8,16 @@
     p
       = @form.equal_addresses_error
 = form_tag taxi_rides_path, method: :post, class: "ui form"
+  div.ui.calendar.taxi-ride-calendar.field class=(@form.date_error? ? 'error' : '')
+    div.ui.input.left.icon
+      i.calendar.icon
+      = text_field_tag \
+        'taxi_ride[date]',
+        @form.date,
+        placeholder: 'Date...'
+    - if @form.date_error?
+      div.ui.pointing.up.red.basic.label
+        = @form.date_error
   div.field
     div.two.fields
       div.field class=(@form.start_address_error? ? 'error' : '')

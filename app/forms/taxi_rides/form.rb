@@ -19,6 +19,7 @@ module TaxiRides
     def schema
       @schema = Dry::Validation.Schema do
         configure do
+
           def self.messages
             super.merge(
               en:
@@ -36,6 +37,7 @@ module TaxiRides
           end
         end
 
+        required(:date).filled(:str?)
         required(:start_address).filled(:str?, :address_format?)
         required(:destination_address).filled(:str?, :address_format?)
         required(:price).filled(:number?, gteq?: '0')

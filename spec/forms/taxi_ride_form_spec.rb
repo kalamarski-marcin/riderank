@@ -36,6 +36,11 @@ RSpec.describe TaxiRides::Form do
           @form.validate
           expect(@form.errors[:price]).to eq(["is missing"])
         end
+
+        it 'date is missing' do
+          @form.validate
+          expect(@form.errors[:date]).to eq(["is missing"])
+        end
       end
 
       context 'when empty' do
@@ -44,13 +49,19 @@ RSpec.describe TaxiRides::Form do
             start_address: '',
             destination_address: '',
             taxi_provider_id: '',
-            price: ''
+            price: '',
+            date: ''
           }
           @form = TaxiRides::Form.new(@taxi_ride, params)
         end
 
         it 'returns false' do
           expect(@form.validate).to be_falsey
+        end
+
+        it 'date must be filled' do
+          @form.validate
+          expect(@form.errors[:date]).to eq(["must be filled"])
         end
 
         it 'start_address must be filled' do
@@ -119,7 +130,8 @@ RSpec.describe TaxiRides::Form do
           start_address: '1,2,3',
           destination_address: '2,3,4',
           taxi_provider_id: '1',
-          price: '10'
+          price: '10',
+          date: '1.1.2017'
         }
         @form = TaxiRides::Form.new(@taxi_ride, params)
       end

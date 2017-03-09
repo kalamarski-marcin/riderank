@@ -58,17 +58,17 @@ RSpec.describe TaxiRidesController, type: :controller do
     context 'with valid attributes' do
       it 'does save the new taxi ride' do
         expect {
-          post :create, params: { taxi_ride: { start_address: '1,2,3', destination_address: '1,2,4', taxi_provider_id: @taxi_provider.id, price: 100}}
+          post :create, params: { taxi_ride: { date: '1.1.2017', start_address: '1,2,3', destination_address: '1,2,4', taxi_provider_id: @taxi_provider.id, price: 100}}
         }.to change(TaxiRide, :count)
       end
 
       it 'redirects to root' do
-        post :create, params: { taxi_ride: { start_address: '1,2,3', destination_address: '1,2,4', taxi_provider_id: @taxi_provider.id, price: 100}}
+        post :create, params: { taxi_ride: { date: '1.1.2017', start_address: '1,2,3', destination_address: '1,2,4', taxi_provider_id: @taxi_provider.id, price: 100}}
         expect(response).to redirect_to '/'
       end
 
       it 'renders flash' do
-        post :create, params: { taxi_ride: { start_address: '1,2,3', destination_address: '1,2,4', taxi_provider_id: @taxi_provider.id, price: 100}}
+        post :create, params: { taxi_ride: { date: '1.1.2017', start_address: '1,2,3', destination_address: '1,2,4', taxi_provider_id: @taxi_provider.id, price: 100}}
         redirect_to '/'
         expect(flash[:success]).to eq('Ride successfully created')
       end

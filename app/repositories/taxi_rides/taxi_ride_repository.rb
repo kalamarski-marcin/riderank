@@ -7,11 +7,11 @@ module TaxiRides
       "CONCAT_WS(' ',SUM(taxi_rides.price), taxi_rides.currency) AS sum_price"
     ]
 
-    def self.save(taxi_ride:, route:, price:, taxi_provider:, user:)
+    def self.save(taxi_ride:, route:, price:, taxi_provider:, user:, date:)
       taxi_ride.taxi_provider = taxi_provider
       taxi_ride.route = route
       taxi_ride.price = price.to_f
-      taxi_ride.date = DateTime.now
+      taxi_ride.date = date
       taxi_ride.user = user
       taxi_ride.save
     end

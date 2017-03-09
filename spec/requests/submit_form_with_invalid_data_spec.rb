@@ -9,10 +9,9 @@ RSpec.describe 'submit form with invalid data' do
   context 'when params are empty' do
     it 'displays errors' do
       click_button('Save')
-      expect(page).to have_content('must be filled', count: 3)
+      expect(page).to have_content('must be filled', count: 4)
       expect(page).to have_xpath('//div[@class="field error"]', count: 3)
-      expect(page).to have_xpath('//div[@class="field error"]', count: 3)
-      expect(page).to have_xpath('//div[@class="ui pointing up red basic label"]', count: 3)
+      expect(page).to have_xpath('//div[@class="ui pointing up red basic label"]', count: 4)
     end
   end
 
@@ -25,8 +24,7 @@ RSpec.describe 'submit form with invalid data' do
       expect(page).to have_content('type in following format: street, city, country', count: 2)
       expect(page).to have_content('must be a number', count: 1)
       expect(page).to have_xpath('//div[@class="field error"]', count: 3)
-      expect(page).to have_xpath('//div[@class="field error"]', count: 3)
-      expect(page).to have_xpath('//div[@class="ui pointing up red basic label"]', count: 3)
+      expect(page).to have_xpath('//div[@class="ui pointing up red basic label"]', count: 4)
     end
   end
 

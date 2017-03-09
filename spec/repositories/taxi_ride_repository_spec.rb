@@ -10,6 +10,7 @@ RSpec.describe TaxiRides::TaxiRideRepository do
         user = create(:user)
         price = 100
         taxi_ride = TaxiRide.new
+        date = DateTime.now
 
         expect(
           TaxiRides::TaxiRideRepository.save(
@@ -17,7 +18,8 @@ RSpec.describe TaxiRides::TaxiRideRepository do
             route: route,
             taxi_provider: taxi_provider,
             price: price,
-            user: user
+            user: user,
+            date: date
           )
         ).to be_truthy
       end
